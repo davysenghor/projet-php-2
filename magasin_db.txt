@@ -1,0 +1,25 @@
+create database magasin_db character set 'utf8';
+
+use magasin_db;
+
+create table tb_action(
+id_action bigint auto_increment primary key,
+nom_prod varchar(150) not null,
+qte_prod int not null,
+date_exp varchar(50) not null,
+date_action datetime not null,
+mag_num int not null,
+nature_action varchar(50) not null)
+engine=innodb;
+
+create view v_stock1 as
+select nom_prod,-qte_prod as qte_prod,mag_num,nature_action,date_exp from tb_action where nature_action='DEPOT';
+      union
+select nom_prod,-qte_prod as qte_prod,mag_num,nature_action,date_exp from tb_action where nature_action='RETRAIT';
+
+
+
+  
+
+
+
